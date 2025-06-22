@@ -19,6 +19,11 @@ public class UserService {
     public User createUser(UserCreationRequest request) {
 
         User user = new User();
+
+        if (userRepository.existByUsername(request.getUsername())) {
+            throw new RuntimeException("Username already exists");
+        }
+        
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());
         user.setFirstName(request.getFirstName());
@@ -33,7 +38,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    
+
     //get user by id
     //if user not found, throw exception
     public User getUser(String id) {
