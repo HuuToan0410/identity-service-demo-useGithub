@@ -1,4 +1,4 @@
-package com.backend.identity_service.DTO.request;
+package com.backend.identity_service.DTO;
 
 import java.time.LocalDate;
 
