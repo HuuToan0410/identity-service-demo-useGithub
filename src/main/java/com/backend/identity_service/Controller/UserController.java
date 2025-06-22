@@ -17,6 +17,8 @@ import com.backend.identity_service.DTO.UserUpdateRequest;
 import com.backend.identity_service.entity.User;
 import com.backend.identity_service.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/users") // Gộp URL gốc
 public class UserController {
@@ -26,7 +28,7 @@ public class UserController {
 
     // POST /users
     @PostMapping
-    public User createUser(@RequestBody UserCreationRequest request) {
+    public User createUser(@RequestBody @Valid UserCreationRequest request) {
         return userService.createUser(request);
     }
 
