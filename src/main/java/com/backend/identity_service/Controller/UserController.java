@@ -16,6 +16,7 @@ import com.backend.identity_service.service.UserService;
 
 
 
+
 @RestController
 public class UserController {
     @Autowired
@@ -36,6 +37,6 @@ public class UserController {
    User getUser(@PathVariable("userId") String userId) {
     return userService.getUser(userId);
    }
-    
+   
     
 }
