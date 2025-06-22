@@ -3,6 +3,7 @@ package com.backend.identity_service.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,5 +46,11 @@ public class UserController {
     @PutMapping("/{userId}")
     public User updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
         return userService.updateUser(userId, request);
+    }
+
+    @DeleteMapping("/{userId}")
+    public String deleteUser(@PathVariable String userId) {
+        userService.deleteUser(userId);
+        return "User deleted successfully";
     }
 }
