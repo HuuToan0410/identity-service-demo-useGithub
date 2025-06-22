@@ -7,5 +7,5 @@ import com.backend.identity_service.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-    
+    boolean existByUsername(String username);
 }
