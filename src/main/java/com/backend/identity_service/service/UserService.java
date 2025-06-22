@@ -33,6 +33,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    
+    //get user by id
+    //if user not found, throw exception
     public User getUser(String id) {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }
@@ -44,5 +47,9 @@ public class UserService {
         user.setLastName(request.getLastName());
         user.setDob(request.getDob());
         return userRepository.save(user);
+    }
+
+    public void deleteUser(String userId) {
+        userRepository.deleteById(userId);
     }
 }
