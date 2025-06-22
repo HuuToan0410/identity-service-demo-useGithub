@@ -1,0 +1,25 @@
+package com.backend.identity_service.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.backend.identity_service.DTO.UserCreationRequest;
+import com.backend.identity_service.entity.User;
+import com.backend.identity_service.service.UserService;
+
+
+
+@RestController
+public class UserController {
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/users")
+    User creatUser(@RequestBody UserCreationRequest request) {
+        return userService.createUser(request);
+        
+    }
+    
+}
