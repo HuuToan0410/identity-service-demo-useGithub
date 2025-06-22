@@ -13,7 +13,7 @@ public class UserService {
     UserRepository userRepository;
 
 
-    public User createRequest(UserCreationRequest request) {
+    public User createUser(UserCreationRequest request) {
 
         User user = new User();
         user.setUsername(request.getUsername());
