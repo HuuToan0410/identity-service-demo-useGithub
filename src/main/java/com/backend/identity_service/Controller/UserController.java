@@ -6,37 +6,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.identity_service.DTO.UserCreationRequest;
+import com.backend.identity_service.DTO.UserUpdateRequest;
 import com.backend.identity_service.entity.User;
 import com.backend.identity_service.service.UserService;
 
-
-
-
-
 @RestController
+@RequestMapping("/users") // Gộp URL gốc
 public class UserController {
+
     @Autowired
     private UserService userService;
 
-    @PostMapping("/users")
-    User creatUser(@RequestBody UserCreationRequest request) {
+    // POST /users
+    @PostMapping
+    public User createUser(@RequestBody UserCreationRequest request) {
         return userService.createUser(request);
-
     }
-    
-    @GetMapping("/users")
-    List<User> getUSers() {
+
+    // GET /users
+    @GetMapping
+    public List<User> getUsers() {
         return userService.getUsers();
     }
-    
-   @GetMapping("/users/{userId}")
-   User getUser(@PathVariable("userId") String userId) {
-    return userService.getUser(userId);
-   }
-   
-    
+
+    // GET /users/{userId}
+    @GetMapping("/{userId}")
+    public User getUser(@PathVariable("userId") String userId) {
+        return userService.getUser(userId);
+    }
+
+    // PUT /users/{userId}
+    @PutMapping("/{userId}")
+    public User updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
+        return userService.updateUser(userId, request);
+    }
 }

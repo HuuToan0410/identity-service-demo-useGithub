@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.identity_service.DTO.UserCreationRequest;
+import com.backend.identity_service.DTO.UserUpdateRequest;
 import com.backend.identity_service.entity.User;
 import com.backend.identity_service.repository.UserRepository;
 
@@ -36,4 +37,12 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
+    public User updateUser(String userId, UserUpdateRequest request) {
+        User user = getUser(userId);
+        user.setPassword(request.getPassword());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setDob(request.getDob());
+        return userRepository.save(user);
+    }
 }
